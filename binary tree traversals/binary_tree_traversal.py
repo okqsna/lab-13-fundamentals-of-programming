@@ -5,34 +5,43 @@ class Node:
         self.right = right
 
 # Pre-order traversal
-def pre_order(node, nodes = []):
+def pre_order(node, nodes = None):
     if node is None:
         return []
 
+    if nodes is None:
+        nodes = []
+
     nodes.append(node.data)
-    pre_order(node.left)
-    pre_order(node.right)
+    pre_order(node.left, nodes)
+    pre_order(node.right, nodes)
 
     return nodes
 
 # In-order traversal
-def in_order(node, nodes = []):
+def in_order(node, nodes = None):
     if node is None:
         return []
 
-    in_order(node.left)
+    if nodes is None:
+        nodes = []
+
+    in_order(node.left, nodes)
     nodes.append(node.data)
-    in_order(node.right)
+    in_order(node.right, nodes)
 
     return nodes
 
 # Post-order traversal
-def post_order(node, nodes = []):
+def post_order(node, nodes = None):
     if node is None:
         return []
 
-    post_order(node.left)
-    post_order(node.right)
+    if nodes is None:
+        nodes = []
+
+    post_order(node.left, nodes)
+    post_order(node.right, nodes)
     nodes.append(node.data)
 
     return nodes
